@@ -6,10 +6,11 @@ jobs:
   compile:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: build to _site folder
-      run: echo "building jekyll site to _site folder"
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-    - name: deploy to firebase
-      run: echo "deploying _site folder to firebase hosting"
+      run: jekyll build
+  # publish:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: deploy to firebase
+  #     run: echo "deploying _site folder to firebase hosting"
