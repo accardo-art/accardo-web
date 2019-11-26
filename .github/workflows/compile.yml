@@ -10,11 +10,14 @@ jobs:
     # use an image that has jekyll already installed on it
     runs-on: ubuntu-latest
     steps:
-    - name: install jekyll cli
-      uses: faph/action-jekyll@v0.1
     - uses: actions/checkout@v1
+    - name: install jekyll cli
+      run: |
+        docker run \
+        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
     - name: build to _site folder
-      run: jekyll build
+      run: jekyll -v
   # publish:
   #   runs-on: ubuntu-latest
   #   steps:
