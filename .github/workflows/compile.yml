@@ -1,11 +1,17 @@
 name: build
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   compile:
+    # use an image that has jekyll already installed on it
     runs-on: ubuntu-latest
     steps:
+    - name: install jekyll cli
+      uses: faph/action-jekyll@v0.1
     - uses: actions/checkout@v1
     - name: build to _site folder
       run: jekyll build
