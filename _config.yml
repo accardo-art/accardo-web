@@ -13,12 +13,12 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Joey Accardo Art
-email: joey@accardo.art
+title: Prismacolor Sports Art by Joseph Accardo
+email: j.accordo_art@yahoo.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Prismacolor sports artist.
+  Husband and father of two beautiful girls.
+  Originals and prints available.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: derryroshad
@@ -52,12 +52,18 @@ collections:
 author:
   name: "Joseph Accardo"
   avatar: "/assets/images/68-800x800.jpg"
-  bio: "Some short text about Joseph Accardo"
+  bio: "Prismacolor sports artist. Husband and father of two beautiful girls. Originals and prints available."
   location: "Los Angeles, CA, USA"
   links:
     - label: "joseph-accardo.com"
       icon: "fas fa-fw fa-link"
       url: "https://joseph-accardo.com"
+    - label: "j.accardo@joseph-accardo.com"
+      icon: "far fa-fw fa-envelope"
+      url: "mailto:j.accardo@joseph-accardo.com"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/j.accardo_art"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter"
+      url: "https://twitter.com/jaccardo"
