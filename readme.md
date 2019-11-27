@@ -1,16 +1,16 @@
 # accardo-web
 
-![](https://github.com/accardo-art/accardo-web/workflows/build/badge.svg)
+<!-- ![](https://github.com/accardo-art/accardo-web/workflows/build/badge.svg) -->
 
-```
-+-- accardo-art/accardo-web
-	+-- .github
-		+-- templates
-		+-- workflows
-	+-- src
-		+-- _items
-		+-- _pages
-		+-- _posts
-	|-- .gitattributes
-	|-- .gitignore
-```
+code repository for https://accardo.art|com|net
+
+
+
+accardo-art @ github
+
+- accardo-web
+
+- [ ] purchase domain name (via google)
+- [ ] register google firebase
+
+j.accardo@yahoo.com
