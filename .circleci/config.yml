@@ -8,9 +8,7 @@ jobs:
     steps:
       - run:
           name: install jekyll
-          command: |
-            gem install jekyll
-            gem install bundler -v 2.0.2
+          command: gem install jekyll
       
       - run:
           name: install firebase
