@@ -17,7 +17,9 @@ jobs:
       - run:
           name: install ruby dependencies
           command: |
+            gem update --system
             gem install bundler
+            bundler update --bundler
             bundle install
       
       # - run:
