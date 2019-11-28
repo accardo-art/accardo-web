@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: starefossen/ruby-node
+      - image: ruby:latest
       #- image: derrysmith/cwentzel-build:latest
     steps:
       - run:
