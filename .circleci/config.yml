@@ -1,0 +1,23 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: starefossen/ruby-node
+    steps:
+      - run:
+          name: install jekyll
+          command: gem install jekyll bundler
+      
+      - run:
+          name: install firebase
+          command: npm install -g firebase-tools --unsafe-perm
+      
+      - checkout
+      
+      - run:
+          name: compile
+          command: jekyll build
+      # - run:
+      #     name: publish
+      #     command: firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
