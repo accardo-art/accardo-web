@@ -16,7 +16,9 @@ jobs:
       
       - run:
           name: install ruby dependencies
-          command: bundle install
+          command: |
+            gem install bundler
+            bundle install
       
       # - run:
       #     name: install node dependencies
