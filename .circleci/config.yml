@@ -3,7 +3,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:latest-node
+      #- image: circleci/ruby:latest-node
+      - image: starefossen/ruby-node:latest
       #- image: derrysmith/cwentzel-build:latest
     steps:
       - checkout
