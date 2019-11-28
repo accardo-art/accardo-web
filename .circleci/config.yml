@@ -6,19 +6,29 @@ jobs:
       - image: circleci/ruby:latest-node
       #- image: derrysmith/cwentzel-build:latest
     steps:
-      - run:
-          name: install jekyll
-          command: gem install jekyll
-      
-      - run:
-          name: install firebase
-          command: npm install -g firebase-tools --unsafe-perm
-      
       - checkout
+
+      - restore_cache:
+          keys:
+            - app-dependencies-{{ checksum "Gemfile.lock" }}
+            - app-dependencies-
+      
+      - run:
+          name: install ruby dependencies
+          command: bundle install
+      
+      # - run:
+      #     name: install node dependencies
+      #     command: npm install -g firebase-tools --unsafe-perm
+      - save_cache:
+          paths:
+            - /usr/local/bundle
+            - /usr/local/lib/node_modules
+          key: app-dependencies-{{ checksum "Gemfile.lock" }}
       
       - run:
           name: compile
-          command: jekyll build
+          command: bundle exec jekyll build --verbose
       # - run:
       #     name: publish
       #     command: firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
