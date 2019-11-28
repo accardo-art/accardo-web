@@ -1,0 +1,16 @@
+name: build-and-deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@master
+      - name: install dependencies
+        run: echo "need to install jekyll and firebase?"
