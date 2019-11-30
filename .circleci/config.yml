@@ -1,39 +1,56 @@
 version: 2
 
+# workflows:
+#   version: 2
+#     pipeline:
+#       jobs:
+#         - compile: # build all branches
+#         - publish: # deploy to firebase hosting (only when pushing to master)
+
 jobs:
   build:
-    docker:
-      #- image: circleci/ruby:latest-node
-      - image: starefossen/ruby-node:latest
-      #- image: derrysmith/cwentzel-build:latest
+    machine: true
+    
+    environment: &environment_variables
+      DOCKER_ORG: derrysmith
+      GITHUB_ORG: accardo-art
+      GITHUB_REPO: accardo-web
+    
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-            - app-dependencies-{{ checksum "Gemfile.lock" }}
-            - app-dependencies-
-      
       - run:
-          name: install ruby dependencies
-          command: |
-            gem update --system
-            gem install bundler
-            bundler update --bundler
-            bundle install
+          name: compile jekyll site
+          command: docker-compose run --rm build
+
+      # - restore_cache:
+      #     keys:
+      #       - app-dependencies-{{ checksum "Gemfile.lock" }}
+      #       - app-dependencies-
+      
+      # - run:
+      #     name: install ruby dependencies
+      #     command: |
+      #       gem update --system
+      #       gem install bundler
+      #       bundler update --bundler
+      #       bundle install
       
       # - run:
       #     name: install node dependencies
       #     command: npm install -g firebase-tools --unsafe-perm
-      - save_cache:
-          paths:
-            - /usr/local/bundle
-            - /usr/local/lib/node_modules
-          key: app-dependencies-{{ checksum "Gemfile.lock" }}
+      # - save_cache:
+      #     paths:
+      #       - /usr/local/bundle
+      #       - /usr/local/lib/node_modules
+      #     key: app-dependencies-{{ checksum "Gemfile.lock" }}
       
-      - run:
-          name: compile
-          command: bundle exec jekyll build --verbose
+      # - run:
+      #     name: compile
+      #     command: bundle exec jekyll build --verbose
+      # - run:
+      #     name: compile
+      #     command: docker-compose run --rm build
       # - run:
       #     name: publish
       #     command: firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
