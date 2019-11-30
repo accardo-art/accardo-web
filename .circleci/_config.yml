@@ -1,0 +1,25 @@
+version: 2
+
+workflows:
+  version: 2
+
+  workflow:
+    jobs:
+      - compile
+                  
+jobs:
+  compile:
+    docker:
+      - image: jekyll/jekyll:builder
+    
+    environment: &environment_variables
+      DOCKER_ORG: derrysmith
+      GITHUB_ORG: accardo-art
+      GITHUB_REPO: accardo-web
+    
+    steps:
+      - checkout
+
+      - run:
+          name: Compile Jekyll Site
+          command: jekyll build
