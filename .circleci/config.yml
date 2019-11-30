@@ -45,7 +45,9 @@ jobs:
           command: |
             whoami
             ls -al
-            jekyll build
+            jekyll -v
+            bundle check || bundle install
+            bundle exec jekyll build
 
       # - restore_cache:
       #     keys:
