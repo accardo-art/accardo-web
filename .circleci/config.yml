@@ -2,18 +2,19 @@ version: 2
 
 workflows:
   version: 2
-    pipeline:
-      jobs:
-        - compile
-        
-        - publish:
-            requires:
-              - compile
 
-            filters:
-              branches:
-                only:
-                  - master
+  workflow:
+    jobs:
+      - compile
+      
+      - publish:
+          requires:
+            - compile
+
+          filters:
+            branches:
+              only:
+                - master
                   
 jobs:
   publish:
