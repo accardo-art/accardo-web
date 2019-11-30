@@ -30,8 +30,7 @@ jobs:
 
   compile:
     docker:
-      #- image: jekyll/jekyll:builder
-      - image: circleci/ruby:latest
+      - image: jekyll/jekyll:builder
     
     environment: &environment_variables
       DOCKER_ORG: derrysmith
@@ -42,12 +41,8 @@ jobs:
       - checkout
 
       - run:
-          name: Install Dependencies
-          command: bundle _2.0.2_ check || bundle install
-
-      - run:
           name: Compile Jekyll Site
-          command: bundle _2.0.2_ exec jekyll build
+          command: jekyll build
 
       # - restore_cache:
       #     keys:
