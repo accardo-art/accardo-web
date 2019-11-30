@@ -18,7 +18,8 @@ workflows:
                   
 jobs:
   publish:
-    machine: true
+    docker:
+      - image: jekyll/jekyll:builder
 
     steps:
       - checkout
@@ -28,7 +29,8 @@ jobs:
           command: echo "deploying to firebase"
 
   compile:
-    machine: true
+    docker:
+      - image: jekyll/jekyll:builder
     
     environment: &environment_variables
       DOCKER_ORG: derrysmith

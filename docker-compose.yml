@@ -9,6 +9,7 @@ services:
 
     volumes:
       - .:/srv/jekyll
+      - ./_site:/srv/jekyll/_site
       - ./vendor/bundle:/usr/local/bundle
   serve:
     #image: derrysmith/jekyll:local
