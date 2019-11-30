@@ -42,7 +42,9 @@ jobs:
 
       - run:
           name: Compile Jekyll Site
-          command: jekyll build
+          command: |
+            ls -al
+            jekyll build
 
       # - restore_cache:
       #     keys:
