@@ -43,11 +43,11 @@ jobs:
 
       - run:
           name: Install Dependencies
-          command: bundle check || bundle install
+          command: bundle _2.0.2_ check || bundle install
 
       - run:
           name: Compile Jekyll Site
-          command: bundle exec jekyll build
+          command: bundle _2.0.2_ exec jekyll build
 
       # - restore_cache:
       #     keys:
