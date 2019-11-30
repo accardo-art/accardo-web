@@ -8,8 +8,8 @@ services:
     command: jekyll build
 
     volumes:
-      - ./src:/srv/jekyll
-      - ./src/vendor/bundle:/usr/local/bundle
+      - .:/srv/jekyll
+      - ./vendor/bundle:/usr/local/bundle
   serve:
     #image: derrysmith/jekyll:local
     image: jekyll/jekyll:builder
