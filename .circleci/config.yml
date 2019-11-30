@@ -40,7 +40,7 @@ jobs:
 
       - run:
           name: Compile Jekyll Site
-          command: echo "docker-compose run --rm build"
+          command: docker-compose run --rm build
 
       # - restore_cache:
       #     keys:
