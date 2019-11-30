@@ -1,14 +1,32 @@
 version: 2
 
-# workflows:
-#   version: 2
-#     pipeline:
-#       jobs:
-#         - compile: # build all branches
-#         - publish: # deploy to firebase hosting (only when pushing to master)
+workflows:
+  version: 2
+    pipeline:
+      jobs:
+        - compile
+        
+        - publish:
+            requires:
+              - compile
 
+            filters:
+              branches:
+                only:
+                  - master
+                  
 jobs:
-  build:
+  publish:
+    machine: true
+
+    steps:
+      - checkout
+
+      - run:
+          name: Deploy to Firebase Hosting
+          command: echo "deploying to firebase"
+
+  compile:
     machine: true
     
     environment: &environment_variables
@@ -20,8 +38,8 @@ jobs:
       - checkout
 
       - run:
-          name: compile jekyll site
-          command: docker-compose run --rm build
+          name: Compile Jekyll Site
+          command: echo "docker-compose run --rm build"
 
       # - restore_cache:
       #     keys:
