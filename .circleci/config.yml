@@ -26,7 +26,9 @@ jobs:
 
       - run:
           name: Install Ruby Dependencies
-          command: bundle check || bundle install
+          command: |
+            ls -al
+            bundle check || bundle install
 
       - save_cache:
           key: gemfile-v1-{{ checksum "./src/Gemfile.lock" }}
