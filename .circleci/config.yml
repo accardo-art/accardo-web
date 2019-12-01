@@ -21,7 +21,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - gemfile-v1-{{ checksum "Gemfile.lock" }}
+            - gemfile-v1-{{ checksum "./src/Gemfile.lock" }}
             - gemfile-v1-default
 
       - run:
@@ -29,7 +29,7 @@ jobs:
           command: bundle check || bundle install
 
       - save_cache:
-          key: gemfile-v1-{{ checksum "Gemfile.lock" }}
+          key: gemfile-v1-{{ checksum "./src/Gemfile.lock" }}
           paths:
             - src/vendor/bundle
 
