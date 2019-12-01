@@ -10,7 +10,7 @@ workflows:
 jobs:
   compile:
     docker:
-      - image: circleci/ruby:2.5
+      - image: circleci/ruby:latest-node
     
     steps:
       - checkout
@@ -24,7 +24,7 @@ jobs:
           name: Install Ruby Dependencies
           command: |
             cd ./src
-            bundle _2.0.2_ check || bundle _2.0.2_ install
+            bundle check || bundle install
 
       - save_cache:
           key: gemfile-v1-{{ checksum "./src/Gemfile.lock" }}
