@@ -6,7 +6,7 @@ workflows:
   workflow:
     jobs:
       - compile
-      
+
       - publish:
           requires:
             - compile
@@ -18,11 +18,11 @@ jobs:
     
     steps:
       - attach_workspace:
-          at: ./
+          at: ./_site
       
       - run:
-          name: list files
-          command: ls -al
+          name: Deploy to Firebase Hosting
+          command: firebase deploy --token=$FIREBASE_TOKEN --non-interactive
   compile:
     docker:
       - image: derrysmith/circle-jekyll:latest
