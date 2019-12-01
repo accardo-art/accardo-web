@@ -15,10 +15,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Move to /src Directory
-          command: ls -al && cd ./src && ls -al
-
       - restore_cache:
           keys:
             - gemfile-v1-{{ checksum "./src/Gemfile.lock" }}
@@ -27,7 +23,7 @@ jobs:
       - run:
           name: Install Ruby Dependencies
           command: |
-            ls -al
+            cd ./src
             bundle check || bundle install
 
       - save_cache:
