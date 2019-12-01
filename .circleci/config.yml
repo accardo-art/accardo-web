@@ -17,14 +17,15 @@ jobs:
       - image: derrysmith/circle-jekyll:latest
     
     steps:
+      - checkout
+      
       - attach_workspace:
           at: ./
-      
-      - checkout
       
       - run:
           name: Deploy to Firebase Hosting
           command: |
+            ls -al
             cd ./src
             firebase deploy --token=$FIREBASE_TOKEN --non-interactive
   compile:
