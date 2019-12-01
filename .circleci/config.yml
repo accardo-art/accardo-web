@@ -10,7 +10,7 @@ workflows:
 jobs:
   compile:
     docker:
-      - image: circleci/ruby:latest-node
+      - image: derrysmith/circle-jekyll:latest
     
     steps:
       - checkout
@@ -24,7 +24,6 @@ jobs:
           name: Install Ruby Dependencies
           command: |
             cd ./src
-            gem install bundler:2.0.2
             bundle check || bundle install
 
       - save_cache:
