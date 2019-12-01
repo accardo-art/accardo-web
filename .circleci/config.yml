@@ -36,3 +36,8 @@ jobs:
           command: |
             cd ./src
             bundle exec jekyll build
+
+      - persist_to_workspace:
+          root: ./src
+          paths:
+            - _site
