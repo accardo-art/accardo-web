@@ -1,6 +1,15 @@
 version: "3.2"
 
 services:
+  install:
+    image: jekyll/jekyll:builder
+
+    command: bundle install
+
+    volumes:
+      - ./src:/srv/jekyll
+      - ./src/vendor/bundle:/usr/local/bundle
+
   build:
     image: jekyll/jekyll:builder
 
@@ -9,6 +18,7 @@ services:
     volumes:
       - ./src:/srv/jekyll
       - ./src/vendor/bundle:/usr/local/bundle
+
   serve:
     image: jekyll/jekyll:builder
 

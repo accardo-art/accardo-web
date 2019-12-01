@@ -15,5 +15,9 @@ jobs:
       - checkout
 
       - run:
+          name: Install Ruby Dependencies
+          command: docker-compose run --rm install
+
+      - run:
           name: Compile Jekyll Site
-          command: ls -al && docker-compose run --rm build
+          command: docker-compose run --rm build
