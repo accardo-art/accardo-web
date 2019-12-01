@@ -9,15 +9,30 @@ workflows:
                   
 jobs:
   compile:
-    machine: true
+    docker:
+      - image: circleci/ruby:2.5
     
     steps:
       - checkout
 
       - run:
-          name: Install Ruby Dependencies
-          command: docker-compose run --rm install
+          name: Move to /src Directory
+          command: ls -al && cd ./src && ls -al
+
+      - restore_cache:
+          keys:
+            - gemfile-v1-{{ checksum "Gemfile.lock" }}
+            - gemfile-v1-default
 
       - run:
-          name: Compile Jekyll Site
-          command: docker-compose run --rm build
+          name: Install Ruby Dependencies
+          command: bundle check || bundle install
+
+      - save_cache:
+          key: gemfile-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - src/vendor/bundle
+
+      # - run:
+      #     name: Compile Jekyll Site
+      #     command: docker-compose run --rm build
