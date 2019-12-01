@@ -30,7 +30,7 @@ jobs:
       - save_cache:
           key: gemfile-v1-{{ checksum "./src/Gemfile.lock" }}
           paths:
-            - src/vendor/bundle
+            - /usr/local/bundle
 
       # - run:
       #     name: Compile Jekyll Site
