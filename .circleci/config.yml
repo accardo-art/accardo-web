@@ -10,7 +10,7 @@ workflows:
 jobs:
   compile:
     machine:
-      - image: jekyll/jekyll:builder
+      image: jekyll/jekyll:builder
     
     steps:
       - checkout
