@@ -6,8 +6,23 @@ workflows:
   workflow:
     jobs:
       - compile
+      
+      - publish:
+          requires:
+            - compile
                   
 jobs:
+  publish:
+    docker:
+      - image: derrysmith/circle-jekyll:latest
+    
+    steps:
+      - attach_workspace:
+          at: ./
+      
+      - run:
+          name: list files
+          command: ls -al
   compile:
     docker:
       - image: derrysmith/circle-jekyll:latest
