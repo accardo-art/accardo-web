@@ -18,7 +18,7 @@ jobs:
       - restore_cache:
           keys:
             - gemfile-v1-{{ checksum "./src/Gemfile.lock" }}
-            - gemfile-v1-default
+            - gemfile-v1-
 
       - run:
           name: Install Ruby Dependencies
@@ -32,6 +32,8 @@ jobs:
           paths:
             - /usr/local/bundle
 
-      # - run:
-      #     name: Compile Jekyll Site
-      #     command: docker-compose run --rm build
+      - run:
+          name: Compile Jekyll Site
+          command: |
+            cd ./src
+            bundle exec jekyll build
