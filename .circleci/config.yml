@@ -18,11 +18,15 @@ jobs:
     
     steps:
       - attach_workspace:
-          at: ./_site
+          at: ./
+      
+      - checkout
       
       - run:
           name: Deploy to Firebase Hosting
-          command: firebase deploy --token=$FIREBASE_TOKEN --non-interactive
+          command: |
+            cd ./src
+            firebase deploy --token=$FIREBASE_TOKEN --non-interactive
   compile:
     docker:
       - image: derrysmith/circle-jekyll:latest
