@@ -9,12 +9,11 @@ workflows:
                   
 jobs:
   compile:
-    machine:
-      image: jekyll/jekyll:builder
+    machine: true
     
     steps:
       - checkout
 
       - run:
           name: Compile Jekyll Site
-          command: docker-compose run --rm build
+          command: ls -al && docker-compose run --rm build
