@@ -40,10 +40,7 @@ jobs:
 
       - run:
           name: Compile Jekyll Site
-          command: |
-            #cd ./src
-            #bundle exec jekyll build
-            bundle exec --gemfile=./src/Gemfile "jekyll build --config=./src/_config.yml --source=./src"
+          command: bundle exec --gemfile=./src/Gemfile "jekyll build --config=./src/_config.yml --source=./src"
 
       - persist_to_workspace:
           root: ./
@@ -61,6 +58,4 @@ jobs:
       
       - run:
           name: Deploy to Firebase Hosting
-          command: |
-            ls -al
-            #firebase deploy --token=$FIREBASE_TOKEN --non-interactive
+          command: firebase deploy --token=$FIREBASE_TOKEN --non-interactive
