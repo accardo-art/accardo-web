@@ -10,6 +10,11 @@ workflows:
       - publish:
           requires:
             - compile
+          
+          filters:
+            branches:
+              only:
+                - master
                   
 jobs:
   publish:
