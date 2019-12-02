@@ -17,21 +17,6 @@ workflows:
                 - master
                   
 jobs:
-  publish:
-    docker:
-      - image: derrysmith/circle-jekyll:latest
-    
-    steps:
-      - checkout
-      
-      - attach_workspace:
-          at: ./src
-      
-      - run:
-          name: Deploy to Firebase Hosting
-          command: |
-            cd ./src
-            firebase deploy --token=$FIREBASE_TOKEN --non-interactive
   compile:
     docker:
       - image: derrysmith/circle-jekyll:latest
@@ -66,3 +51,19 @@ jobs:
           paths:
             - _site
             - firebase*
+  publish:
+    docker:
+      - image: derrysmith/circle-jekyll:latest
+    
+    steps:
+      - checkout
+      
+      - attach_workspace:
+          at: ./
+      
+      - run:
+          name: Deploy to Firebase Hosting
+          command: |
+            #cd ./src
+            ls -al
+            firebase deploy --token=$FIREBASE_TOKEN --non-interactive
