@@ -50,13 +50,14 @@ jobs:
           root: ./src
           paths:
             - _site
-            - firebase*
+            - .firebaserc
+            - firebase.json
   publish:
     docker:
       - image: derrysmith/circle-jekyll:latest
     
     steps:
-      - checkout
+      #- checkout
       
       - attach_workspace:
           at: ./
