@@ -26,7 +26,6 @@ jobs:
           name: Deploy to Firebase Hosting
           command: |
             ls -al
-            cd ./src
             firebase deploy --token=$FIREBASE_TOKEN --non-interactive
   compile:
     docker:
@@ -58,7 +57,7 @@ jobs:
             bundle exec jekyll build
 
       - persist_to_workspace:
-          root: ./src
+          root: ./
           paths:
             - _site
             - firebase*
