@@ -1,14 +1,5 @@
 _site
 .sass-cache
+.jekyll-cache
 .jekyll-metadata
-
-./vscode
-
-### Firebase ###
-.idea
-**/node_modules/*
-**/.firebaserc
-
-### Firebase Patch ###
-.runtimeconfig.json
-.firebase/
+vendor

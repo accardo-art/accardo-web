@@ -1,0 +1,68 @@
+version: 2
+
+workflows:
+  version: 2
+
+  workflow:
+    jobs:
+      - compile
+
+      - publish:
+          requires:
+            - compile
+          
+          filters:
+            branches:
+              only:
+                - master
+                  
+jobs:
+  publish:
+    docker:
+      - image: derrysmith/circle-jekyll:latest
+    
+    steps:
+      - checkout
+      
+      - attach_workspace:
+          at: ./src
+      
+      - run:
+          name: Deploy to Firebase Hosting
+          command: |
+            cd ./src
+            firebase deploy --token=$FIREBASE_TOKEN --non-interactive
+  compile:
+    docker:
+      - image: derrysmith/circle-jekyll:latest
+    
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - ruby-dependencies-v1-{{ checksum "./src/Gemfile.lock" }}
+            - ruby-dependencies-v1-
+
+      - run:
+          name: Install Ruby Dependencies
+          command: |
+            cd ./src
+            bundle check || bundle install
+
+      - save_cache:
+          key: ruby-dependencies-v1-{{ checksum "./src/Gemfile.lock" }}
+          paths:
+            - /usr/local/bundle
+
+      - run:
+          name: Compile Jekyll Site
+          command: |
+            cd ./src
+            bundle exec jekyll build
+
+      - persist_to_workspace:
+          root: ./src
+          paths:
+            - _site
+            - firebase*
