@@ -20,7 +20,7 @@ jobs:
       - checkout
       
       - attach_workspace:
-          at: ./
+          at: ./src
       
       - run:
           name: Deploy to Firebase Hosting
@@ -61,3 +61,4 @@ jobs:
           root: ./src
           paths:
             - _site
+            - firebase*
